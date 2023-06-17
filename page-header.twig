@@ -1,0 +1,212 @@
+{% macro active(t) -%}
+    {%- if t %} class="active"{% endif -%}
+{% endmacro %}
+{% macro active_class(t) %}
+    {%- if t %} active{% endif -%}
+{% endmacro -%}
+{% set auth = user.auth -%}
+</head>
+<body id="{% if document == 'collages' %}collage{% else %}{{ document }}{% endif %}">
+<form id="extra-hidden">
+<input id="extracb1" class="hidden" type="checkbox">
+<input id="extracb2" class="hidden" type="checkbox">
+<input id="extracb3" class="hidden" type="checkbox">
+<input id="extracb4" class="hidden" type="checkbox">
+<input id="extracb5" class="hidden" type="checkbox">
+</form>
+<div id="wrapper">
+<h1 class="hidden">{{ constant('SITE_NAME') }}</h1>
+<div id="header">
+<div style="
+display: flex;
+flex: 1 0 auto;
+flex-grow: 1;
+height: 100px;
+gap: 20px">
+    <a href="index.php" style="
+    background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDI2LjQuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAzODUgNzgiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDM4NSA3ODsiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgoJLnN0MHtjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDEyODQ4NDc1MzM3NzI1ODc5Njc5MDAwMDAwODE4MTQ5NjMzMTk2MjMzNzE1NV8pO30KCS5zdDF7Y2xpcC1wYXRoOnVybCgjU1ZHSURfMDAwMDAxMzQ5NDc1NjQ0MDQ3MTI1MDk1MTAwMDAwMTIyNzM1NzAzNTQ5NDgzNDM0NjZfKTt9Cgkuc3Qye2ZpbGw6I0ZGRkZGRjt9Cjwvc3R5bGU+CjxnPgoJPGRlZnM+CgkJPHBvbHlnb24gaWQ9IlNWR0lEXzFfIiBwb2ludHM9IjEzOS43LDIwLjMgMTM5LjcsMjAuMyAxMzkuNywyMC40IAkJIi8+Cgk8L2RlZnM+Cgk8ZGVmcz4KCQk8cG9seWdvbiBpZD0iU1ZHSURfMDAwMDAwMzExOTYxMzU4NTI2OTQ2NjQyOTAwMDAwMDEwMjE5NTI2NTQ1MDIxNzU2NjVfIiBwb2ludHM9IjEzOS42LDIwLjIgMTM5LjUsMjAuMiAxMzkuNiwyMC4yIAkJIi8+Cgk8L2RlZnM+Cgk8Y2xpcFBhdGggaWQ9IlNWR0lEXzAwMDAwMDgzMDQ2NjQzMzcxMTM0ODI5ODkwMDAwMDAzMjc4NzAzNzE5MDIzMzM3MzY5XyI+CgkJPHVzZSB4bGluazpocmVmPSIjU1ZHSURfMV8iICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZTsiLz4KCTwvY2xpcFBhdGg+CgkKCQk8Y2xpcFBhdGggaWQ9IlNWR0lEXzAwMDAwMTUwODA3MjQ4ODM0NDk5OTkwNTIwMDAwMDE3MjExNzYwMjY1Mjc2NjU2MDU3XyIgc3R5bGU9ImNsaXAtcGF0aDp1cmwoI1NWR0lEXzAwMDAwMDgzMDQ2NjQzMzcxMTM0ODI5ODkwMDAwMDAzMjc4NzAzNzE5MDIzMzM3MzY5Xyk7Ij4KCQk8dXNlIHhsaW5rOmhyZWY9IiNTVkdJRF8wMDAwMDAzMTE5NjEzNTg1MjY5NDY2NDI5MDAwMDAwMTAyMTk1MjY1NDUwMjE3NTY2NV8iICBzdHlsZT0ib3ZlcmZsb3c6dmlzaWJsZTsiLz4KCTwvY2xpcFBhdGg+CgkKCQk8ZyB0cmFuc2Zvcm09Im1hdHJpeCguMDQxNDY4IDAgMCAuMDQxNDY4IDcuMTI1ODYyIDExLjI3ODYzNykiIHN0eWxlPSJjbGlwLXBhdGg6dXJsKCNTVkdJRF8wMDAwMDE1MDgwNzI0ODgzNDQ5OTk5MDUyMDAwMDAxNzIxMTc2MDI2NTI3NjY1NjA1N18pOyI+CgkJPHBhdGggZD0iTTM3ODcsNjc5LjRjLTEtMTEwLjEsOTAtMTYzLDk0LjEtMTY1LjZjLTUxLjItNzQuOS0xMzAuOC04NS4xLTE1OS4yLTg2LjNjLTY3LjctNi45LTEzMi4yLDM5LjktMTY2LjYsMzkuOQoJCQljLTM0LjQsMC04Ny40LTM4LjktMTQzLjYtMzcuOGMtNzMuOSwxLjEtMTQyLDQyLjktMTgwLjEsMTA5LjFjLTc2LjcsMTMzLTE5LjYsMzMwLjMsNTUuMiw0MzguNGMzNi42LDUyLjgsODAuMSwxMTIuMywxMzcuNCwxMTAuMQoJCQljNTUuMi0yLjIsNzYtMzUuNywxNDIuNi0zNS43YzY2LjYsMCw4NS40LDM1LjcsMTQzLjYsMzQuNmM1OS4zLTEuMiw5Ni45LTU0LDEzMy4yLTEwN2M0MS45LTYxLjMsNTkuMi0xMjAuNyw2MC4yLTEyMy44CgkJCUMzOTAyLjUsODU0LjgsMzc4OC4yLDgxMSwzNzg3LDY3OS40Ii8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBjbGFzcz0ic3QyIiBkPSJNNzkuMiwyNy41Yy0wLjctMC43LTEtMS41LTEtMi40YzAtMC45LDAuMy0xLjcsMS0yLjRjMC43LTAuNywxLjUtMSwyLjQtMWMwLjksMCwxLjcsMC4zLDIuNCwxCgkJCWMwLjcsMC42LDEsMS40LDEsMi40YzAsMC45LTAuMywxLjctMSwyLjRjLTAuNiwwLjctMS40LDEtMi40LDFDODAuNywyOC41LDc5LjksMjguMiw3OS4yLDI3LjV6IE03OC45LDM0aDUuNHYzMi4yaC01LjRWMzR6Ii8+CgkJPHBhdGggY2xhc3M9InN0MiIgZD0iTTEwNS42LDIxLjVoNC4xdjYuN2gtMS40bC0xMy41LDM4aC01LjlMMTA1LjYsMjEuNXogTTk4LjQsNDguNmgxOS44bDEuOSw0LjdIOTYuNkw5OC40LDQ4LjZ6IE0xMDguNCwyOC4yCgkJCXYtNi43aDIuN2wxNi42LDQ0LjdoLTUuOUwxMDguNCwyOC4yeiIvPgoJCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMzEuOSwzNGg1LjR2NC42aDAuMWMwLjktMS41LDIuMS0yLjcsMy44LTMuN2MxLjctMSwzLjctMS41LDYuMS0xLjVjMy41LDAsNi4zLDEuMSw4LjIsMy4yCgkJCWMyLDIuMSwyLjksNSwyLjksOC43djIwLjloLTUuNFY0Ni4yYzAtMi42LTAuNi00LjYtMS44LTZjLTEuMi0xLjQtMy4xLTIuMS01LjYtMi4xYy0xLjcsMC0zLjIsMC40LTQuNCwxLjEKCQkJYy0xLjMsMC44LTIuMiwxLjgtMi45LDMuMmMtMC43LDEuNC0xLDMtMSw0Ljh2MTguOWgtNS40VjM0eiIvPgoJCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xNzAuOSw2NC43Yy0yLjItMS40LTQtMy4zLTUuMi01LjhjLTEuMi0yLjUtMS45LTUuNS0xLjktOC45VjUwYzAtMy40LDAuNi02LjQsMS45LTguOQoJCQljMS4yLTIuNSwzLTQuNCw1LjItNS44YzIuMi0xLjQsNC44LTIsNy44LTJjMywwLDUuNiwwLjcsNy44LDJjMi4yLDEuNCw0LDMuMyw1LjIsNS44YzEuMiwyLjUsMS45LDUuNCwxLjksOC45djAuMQoJCQljMCwzLjQtMC42LDYuNC0xLjksOC45Yy0xLjIsMi41LTMsNC40LTUuMiw1LjhjLTIuMiwxLjQtNC44LDItNy44LDJDMTc1LjcsNjYuOCwxNzMuMSw2Ni4xLDE3MC45LDY0Ljd6IE0xODMuNyw2MC42CgkJCWMxLjQtMC45LDIuNS0yLjMsMy4zLTQuMWMwLjgtMS44LDEuMi0zLjksMS4yLTYuNVY1MGMwLTIuNS0wLjQtNC43LTEuMi02LjRjLTAuOC0xLjgtMS45LTMuMS0zLjMtNC4xcy0zLjEtMS40LTUtMS40CgkJCWMtMS45LDAtMy41LDAuNS00LjksMS40Yy0xLjQsMC45LTIuNSwyLjMtMy4zLDQuMWMtMC44LDEuOC0xLjIsMy45LTEuMiw2LjR2MC4xYzAsMi41LDAuNCw0LjcsMS4yLDYuNWMwLjgsMS44LDEuOSwzLjEsMy4zLDQuMQoJCQljMS40LDAuOSwzLjEsMS40LDUsMS40QzE4MC42LDYyLDE4Mi4zLDYxLjUsMTgzLjcsNjAuNnoiLz4KCQk8cGF0aCBjbGFzcz0ic3QyIiBkPSJNMTk5LDM0aDUuNHY0LjZoMC4xYzAuOS0xLjUsMi4xLTIuNywzLjgtMy43YzEuNy0xLDMuNy0xLjUsNi4xLTEuNWMzLjUsMCw2LjMsMS4xLDguMiwzLjIKCQkJYzIsMi4xLDIuOSw1LDIuOSw4Ljd2MjAuOWgtNS40VjQ2LjJjMC0yLjYtMC42LTQuNi0xLjgtNmMtMS4yLTEuNC0zLjEtMi4xLTUuNi0yLjFjLTEuNywwLTMuMiwwLjQtNC40LDEuMQoJCQljLTEuMywwLjgtMi4yLDEuOC0yLjksMy4yYy0wLjcsMS40LTEsMy0xLDQuOHYxOC45SDE5OVYzNHoiLz4KCTwvZz4KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik02MS41LDI2LjZDNjEsMjYuOSw1MywzMS40LDUzLDQxLjVDNTMsNTMsNjMuMiw1Ny4xLDYzLjUsNTcuMmMwLDAuMi0xLjYsNS42LTUuNCwxMS4xCgkJYy0zLjMsNC44LTYuOCw5LjYtMTIuMSw5LjZzLTYuNy0zLjEtMTIuOC0zLjFjLTYsMC04LjEsMy4yLTEyLjksMy4yUzEyLDczLjYsOC4yLDY4LjFDMy42LDYxLjcsMCw1MS43LDAsNDIuMwoJCWMwLTE1LjIsOS45LTIzLjIsMTkuNi0yMy4yYzUuMiwwLDkuNSwzLjQsMTIuNywzLjRjMy4xLDAsNy45LTMuNiwxMy44LTMuNkM0OC4yLDE4LjksNTYuMiwxOS4xLDYxLjUsMjYuNkw2MS41LDI2LjZ6IE00My4yLDEyLjQKCQljMi40LTIuOSw0LjEtNi45LDQuMS0xMC45YzAtMC42LDAtMS4xLTAuMS0xLjZjLTMuOSwwLjEtOC42LDIuNi0xMS41LDUuOWMtMi4yLDIuNS00LjMsNi41LTQuMywxMC42YzAsMC42LDAuMSwxLjIsMC4xLDEuNAoJCWMwLjIsMCwwLjcsMC4xLDEuMSwwLjFDMzYuMiwxOCw0MC42LDE1LjYsNDMuMiwxMi40TDQzLjIsMTIuNHoiLz4KPC9nPgo8L3N2Zz4K');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: cover;
+    flex: 1;
+    margin: 28px 0px;
+    min-width: 130px;
+    max-width: 130px;
+"></a>
+
+    <div style="
+    display: flex;
+    flex: 1;
+    justify-content: right;
+    align-items: center;
+    gap: 6px;
+    flex-direction: column;">
+        <div style="display: flex;
+        flex: 1 0 auto;
+        justify-content: right;
+        align-items: end;
+        gap: 10px;
+        flex-direction: row;
+        width: 100%;">
+            <a href="upload.php" title="Upload">Upload</a>
+            <a href="bonus.php" class='tooltip' title="BP/hour: {{ bonus.hourlyRate|number_format(3) }}">Bonus ({{ user.bonusPointsTotal|number_format }})</a>
+            <a href="user.php?action=invite" class='tooltip' title="Invite a friend!">Invite {% if user.permitted('site_send_unlimited_invites') %} (&infin;){% elseif user.unusedInviteTotal %} ({{ user.unusedInviteTotal }}){% endif %}</a>
+            <a href="donate.php" class='tooltip' title="Donate">Donate ({{ dono_target }}%)</a>
+            <a href="staff.php" title="Staff">Staff</a>
+        </div>
+        <div style="display: flex;
+        flex: 1 0 auto;
+        justify-content: right;
+        align-items: start;
+        gap: 10px;
+        flex-direction: row;
+        width: 100%;">
+            <a href="torrents.php?type=seeding&amp;userid={{ user.id }}">Up: <span class="stat tooltip" title="{{ user.uploadedSize|octet_size(5) }}">{{ user.uploadedSize|octet_size }}</span></a>
+            <a href="torrents.php?type=leeching&amp;userid={{ user.id }}">Down: <span class="stat tooltip" title="{{ user.downloadedSize|octet_size(5) }}">{{ user.downloadedSize|octet_size }}</span></a>
+            Ratio:<span class="stat">{{ ratio(user.uploadedSize, user.downloadedSize) }}</span>
+            {% set required_ratio = viewer.requiredRatio %}
+            {% if required_ratio > 0 or true %}
+                <a href="rules.php?p=ratio">Required: <span class="stat tooltip" title="{{ required_ratio|number_format(5) }}">{{ required_ratio|number_format(2) }}</span></a>
+            {% endif %}
+            {% if user.tokenCount or true %}
+                <a href="wiki.php?action=article&amp;id=57">Tokens: <span class="stat"><a href="userhistory.php?action=token_history&amp;userid={{ user.id }}">{{ user.tokenCount|number_format }}</a></span></a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div style="
+    display: flex;
+    align-items: center;">
+        <a href="" style="display: block;
+        width: 48px;
+        height: 48px;
+        background: #ff0000;
+        border-radius: 24px;
+        overflow: hidden;
+        background: url('{{ user.avatar }}');
+        background-color: rgba(0,0,0,0.4);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;"></a>
+    </div>
+</div>
+<div class="menu_container">
+<label class="hiden_mobile_menu" for="item-3" class="toggle"><i class="fas fa-cog"></i></label>
+  <input type="checkbox" name="one" id="item-3" class="hide-input">
+<div class="user_mobile_menu_toggle" id="userinfo">
+<ul id="userinfo_username">
+    <li id="nav_userinfo" {{ _self.active(document == 'user' and request.id == user.id) }}>
+        <a href="user.php?id={{ user.id }}" class="username">{{ user.username }}</a>
+    </li>
+    <li id="nav_userclass">
+        <span class="hidden userclass">{{ user.userclassName }}</span>
+    </li>
+    <li id="nav_useredit" class="brackets{{ _self.active_class(document == 'user' and action =='edit') }}">
+        <a href="user.php?action=edit&amp;id={{ user.id }}">Settings</a>
+    </li>
+    <li id="nav_logout" class="brackets">
+        <a href="logout.php?auth={{ auth }}">Logout</a>
+    </li>
+</ul>
+<ul id="userinfo_minor">
+{% for link in nav_links -%}
+    {{ link|raw }}
+{%- endfor %}
+</ul>
+</div>
+</div>
+<div class="mobile_header"></div>
+  <input type="checkbox" class="mobile_main_menu" id="mobile_main_menu">
+  <label for="mobile_main_menu" class="main_mobile_menu_toggle">
+    <div class="spinner diagonal part-1"></div>
+    <div class="spinner horizontal"></div>
+    <div class="spinner diagonal part-2"></div>
+  </label>
+<div id="main_site_menu">
+    <div id="menu">
+        <h4 class="hidden">Site Menu</h4>
+        <ul class="main_site_menu_inner">
+            <li id="nav_index"{{    _self.active(document == 'index')    }}><a href="index.php">Home</a> </li>
+            <li id="nav_torrents"{{ _self.active(document == 'torrents') }}><a href="torrents.php">Torrents</a> </li>
+            <li id="nav_collages"{{ _self.active(document == 'collages') }}><a href="collages.php">Collages</a> </li>
+            <li id="nav_requests"{{ _self.active(document == 'requests') }}><a href="requests.php">Requests</a> </li>
+            <li id="nav_reviews"{{  _self.active(document == 'reviews')  }}><a href="reviews.php">Reviews</a> </li>
+            <li id="nav_forums"{{   _self.active(document == 'forums')   }}><a href="forums.php">Forums</a> </li>
+            <li id="nav_irc"{{      _self.active(document == 'chat')     }}><a href="wiki.php?action=article&amp;name=irc">IRC</a> </li>
+            <li id="nav_top10"{{    _self.active(document == 'top10')    }}><a href="top10.php">Top 10</a> </li>
+            <li id="nav_rules"{{    _self.active(document == 'rules')    }}><a href="rules.php">Rules</a> </li>
+            <li id="nav_wiki"{{     _self.active(document == 'wiki')     }}><a href="wiki.php">Wiki</a> </li>
+        </ul>
+    </div>
+</div>
+
+{% if alert_list or action_list %}
+<div id="alerts">
+{% if alert_list %}
+<div class="alertbar">{{ alert_list|join(' &sdot; ')|raw }}</div>
+{% endif %}
+{% if action_list %}
+<div class="alertbar blend">{{ action_list|join(' &sdot; ')|raw }}</div>
+{% endif %}
+</div>
+{% endif %}
+
+<div id="searchbars">
+<ul>
+<li id="searchbar_torrents">
+    <span class="hidden">Torrents: </span>
+    <form class="search_form" name="torrents" action="torrents.php" method="get">
+{% if viewer.option('SearchType') %}
+        <input type="hidden" name="action" value="advanced" />
+{% endif %}
+        <input id="torrentssearch" value="Torrents" placeholder="Torrents" type="text" name="
+            {%- if viewer.option('SearchType') %}groupname{% else %}searchstr{% endif -%}
+            " size="17" spellcheck="false" accesskey="t" />
+    </form>
+</li>
+<!--
+<li id="searchbar_artists">
+    <span class="hidden">Artist: </span>
+    <form class="search_form" name="artists" action="artist.php" method="get">
+        <input id="artistsearch"
+            {%- if user.hasAutocomplete('search') %} data-gazelle-autocomplete="true" {% else %} {% endif -%}
+            value="Artists" placeholder="Artists" type="text" name="artistname" size="17" spellcheck="false" accesskey="a" />
+    </form>
+</li>
+-->
+<li id="searchbar_collages">
+    <span class="hidden">Collage: </span>
+    <form class="search_form" name="collages" action="collages.php" method="get">
+        <input id="collagesearch" value="Collages" placeholder="Collages" type="text" name="search" size="17" spellcheck="false" accesskey="c" />
+    </form>
+</li>
+<li id="searchbar_requests">
+    <span class="hidden">Requests: </span>
+    <form class="search_form" name="requests" action="requests.php" method="get">
+        <input id="requestssearch" value="Requests" placeholder="Requests" type="text" name="search" size="17" spellcheck="false" accesskey="r" />
+    </form>
+</li>
+<li id="searchbar_forums">
+    <span class="hidden">Forums: </span>
+    <form class="search_form" name="forums" action="forums.php" method="get">
+        <input value="search" type="hidden" name="action" />
+        <input id="forumssearch" value="Forums" placeholder="Forums" type="text" name="search" size="17" accesskey="f" />
+    </form>
+</li>
+<li id="searchbar_log">
+    <span class="hidden">Log: </span>
+    <form class="search_form" name="log" action="log.php" method="get">
+        <input id="logsearch" value="Log" placeholder="Log" type="text" name="search" size="17" accesskey="l" />
+    </form>
+</li>
+<li id="searchbar_users">
+    <span class="hidden">Users: </span>
+    <form class="search_form" name="users" action="user.php" method="get">
+        <input type="hidden" name="action" value="search" />
+        <input id="userssearch" value="Users" placeholder="Users" type="text" name="search" size="20" spellcheck="false" accesskey="u" />
+    </form>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
